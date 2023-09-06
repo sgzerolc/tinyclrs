@@ -152,3 +152,28 @@ class Binary_Tree:
         if T.root:
             for A in T.root.subtree_iter():
                 yield A.item
+    
+    def insert(T, item):
+        node = T.Node_Type(item)
+        if not T.root:
+            T.root = node
+        else:
+            T.root.subtree_insert_after(node)
+        T.size += 1
+
+if __name__ == "__main__":
+    N1 = Binary_Node(1)
+    N2 = Binary_Node(2)
+    N3 = Binary_Node(4)
+    N4 = Binary_Node(8)
+    N1.subtree_insert_after(N2)
+    N2.subtree_insert_after(N3)
+    N3.subtree_insert_after(N4)
+    print(N1)
+    tree = Binary_Tree(Binary_Node)
+    tree.insert(4)
+    tree.insert(1)
+    tree.insert(2)
+    tree.insert(8)
+
+    print(tree)
