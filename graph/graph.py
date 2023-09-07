@@ -1,4 +1,6 @@
-import unittest
+import unittest, sys
+sys.path.append("..")
+from priority_queue.direct_access_arr import PriorityQueue
 
 # graph representations
 # adjacency list
@@ -83,7 +85,7 @@ def get_relaxable_edge():
 def relax(Adj, w, d, parent, u, v):
     if d[v] > d[u] + w(u, v):
         d[v] = d[u] + w(u, v)
-        parent[v] = u
+        parent[v] = u # u->v
 
 
 # topological sort relaxation
@@ -135,11 +137,24 @@ def dijkstra(Adj, w, s):
             Q.decrese_key(v, d[v])
     return d, parent
 
+def prim(Adj, w, V):
+    Q = PriorityQueue()
+    S = set() # S is empty first
+    parent = [None for _ in Adj]
+    # cut, least weight edge
+    s = V[-1] # for arbitrary start vertex
+    Q.insert(s, 0)
+    for v in V[:-1]:
+        Q.insert(v, float('inf'))
 
-class PriorityQueue():
-    def __init__(self):
-        self.A = {}
-
+    while Q:
+        u = Q.extract_min()
+        S.add(u)
+        for v in Adj[u]:
+            if v in Q and v not in S and w(u, v) < Q[v]: # v.key
+                Q.decrease_key(v, w(u, v)) # v.key = w(u, v)
+                parent[v] = u # v.parent = u
+    return [(v, parent[v]) for v in V[:-1]]
 
 class TestGraph(unittest.TestCase):
     def test_spt_path(self):
