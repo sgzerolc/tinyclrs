@@ -20,9 +20,11 @@ class Binary_Node:
         return height(A.right) - height(A.left)
 
     def subtree_iter(A):  # O(n)
-        if A.left:   yield from A.left.subtree_iter()
+        if A.left:
+            yield from A.left.subtree_iter()
         yield A
-        if A.right:  yield from A.right.subtree_iter()
+        if A.right:
+            yield from A.right.subtree_iter()
 
     def subtree_first(A):  # O(h)
         if A.left:
@@ -37,13 +39,15 @@ class Binary_Node:
             return A
 
     def successor(A):  # O(h)
-        if A.right: return A.right.subtree_first()
+        if A.right:
+            return A.right.subtree_first()
         while A.parent and (A is A.parent.right):
             A = A.parent
         return A.parent
 
     def predecessor(A):  # O(h)
-        if A.left:  return A.left.subtree_last()
+        if A.left:
+            return A.left.subtree_last()
         while A.parent and (A is A.parent.left):
             A = A.parent
         return A.parent
@@ -88,8 +92,10 @@ class Binary_Node:
         D.item, B.item = B.item, D.item
         B.left, B.right = A, D
         D.left, D.right = C, E
-        if A: A.parent = B
-        if E: E.parent = D
+        if A:
+            A.parent = B
+        if E:
+            E.parent = D
         B.subtree_update()
         D.subtree_update()
 
@@ -101,8 +107,10 @@ class Binary_Node:
         B.item, D.item = D.item, B.item
         D.left, D.right = B, E
         B.left, B.right = A, C
-        if A: A.parent = B
-        if E: E.parent = D
+        if A:
+            A.parent = B
+        if E:
+            E.parent = D
         B.subtree_update()
         D.subtree_update()
 
@@ -119,7 +127,8 @@ class Binary_Node:
     def maintain(A):  # O(h)
         A.rebalance()
         A.subtree_update()
-        if A.parent: A.parent.maintain()
+        if A.parent:
+            A.parent.maintain()
 
     def __str__(A):  # O(nh^2)
         s = str(A.item)
@@ -152,7 +161,7 @@ class Binary_Tree:
         if T.root:
             for A in T.root.subtree_iter():
                 yield A.item
-    
+
     def insert(T, item):
         node = T.Node_Type(item)
         if not T.root:
@@ -160,6 +169,7 @@ class Binary_Tree:
         else:
             T.root.subtree_insert_after(node)
         T.size += 1
+
 
 if __name__ == "__main__":
     N1 = Binary_Node(1)

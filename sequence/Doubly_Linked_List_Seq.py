@@ -5,9 +5,11 @@ class Doubly_Linked_List_Node:
         self.next = None
 
     def later_node(self, i):
-        if i == 0: return self
+        if i == 0:
+            return self
         assert self.next
         return self.next.later_node(i - 1)
+
 
 class Doubly_Linked_List_Seq:
     def __init__(self):
@@ -21,7 +23,7 @@ class Doubly_Linked_List_Seq:
             node = node.next
 
     def __str__(self):
-        return '-'.join([('(%s)' % x) for x in self])
+        return "-".join([("(%s)" % x) for x in self])
 
     def build(self, X):
         for a in X:
@@ -64,12 +66,12 @@ class Doubly_Linked_List_Seq:
     def remove(self, x1, x2):
         L2 = Doubly_Linked_List_Seq()
         ###########################
-        # Part (b): Implement me! # 
+        # Part (b): Implement me! #
         ###########################
         return L2
 
     def splice(self, x, L2):
         ###########################
-        # Part (c): Implement me! # 
+        # Part (c): Implement me! #
         ###########################
         pass

@@ -4,20 +4,22 @@ class Linked_List_Node:
         self.next = None
 
     def later_node(self, i):
-        if i == 0:  return self
+        if i == 0:
+            return self
         assert self.next
         return self.next.later_node(i - 1)
+
 
 class Linked_List_Seq:
     def __init__(self):
         self.head = None
         self.size = 0
 
-    def __len__(self):  
+    def __len__(self):
         return self.size
 
-    def __str__(self):  
-        return '(' + ')->('.join([str(x) for x in self]) + ')'
+    def __str__(self):
+        return "(" + ")->(".join([str(x) for x in self]) + ")"
 
     def __iter__(self):
         node = self.head
@@ -45,7 +47,7 @@ class Linked_List_Seq:
         self.head = new_node
         self.size += 1
 
-    def delete_first(self):         
+    def delete_first(self):
         assert len(self) > 0
         x = self.head.item
         self.head = self.head.next
@@ -73,8 +75,8 @@ class Linked_List_Seq:
         self.size -= 1
         return x
 
-    def insert_last(self, x):   
+    def insert_last(self, x):
         self.insert_at(len(self), x)
 
-    def delete_last(self):      
+    def delete_last(self):
         return self.delete_at(len(self) - 1)

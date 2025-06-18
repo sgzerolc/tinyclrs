@@ -4,9 +4,11 @@ from Binary_Tree import Binary_Node, Binary_Tree
 class BST_Node(Binary_Node):
     def subtree_find(A, k):  # O(h)
         if k < A.item.key:
-            if A.left:  return A.left.subtree_find(k)
+            if A.left:
+                return A.left.subtree_find(k)
         elif k > A.item.key:
-            if A.right: return A.right.subtree_find(k)
+            if A.right:
+                return A.right.subtree_find(k)
         else:
             return A
         return None
@@ -19,7 +21,8 @@ class BST_Node(Binary_Node):
                 return None
         elif A.left:
             B = A.left.subtree_find_next(k)
-            if B:       return B
+            if B:
+                return B
         return A
 
     def subtree_find_prev(A, k):  # O(h)
@@ -30,7 +33,8 @@ class BST_Node(Binary_Node):
                 return None
         elif A.right:
             B = A.right.subtree_find_prev(k)
-            if B:       return B
+            if B:
+                return B
         return A
 
     def subtree_insert(A, B):  # O(h)
@@ -70,23 +74,27 @@ class Binary_Tree_Set(Binary_Tree):
     def find(self, k):  # O(h)
         if self.root:
             node = self.root.subtree_find(k)
-            if node:    return node.item
+            if node:
+                return node.item
 
     def find_next(self, k):  # O(h)
         if self.root:
             node = self.root.subtree_find_next(k)
-            if node:    return node.item
+            if node:
+                return node.item
 
     def find_prev(self, k):  # O(h)
         if self.root:
             node = self.root.subtree_find_prev(k)
-            if node:    return node.item
+            if node:
+                return node.item
 
     def insert(self, x):  # O(h)
         new_node = self.Node_Type(x)
         if self.root:
             self.root.subtree_insert(new_node)
-            if new_node.parent is None: return False
+            if new_node.parent is None:
+                return False
         else:
             self.root = new_node
         self.size += 1
@@ -97,6 +105,7 @@ class Binary_Tree_Set(Binary_Tree):
         node = self.root.subtree_find(k)
         assert node
         ext = node.subtree_extract()
-        if ext.parent is None:  self.root = None
+        if ext.parent is None:
+            self.root = None
         self.size -= 1
         return ext.item

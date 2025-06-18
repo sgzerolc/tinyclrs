@@ -5,8 +5,10 @@ class Size_Node(Binary_Node):
     def subtree_update(A):  # O(1)
         super().subtree_update()
         A.size = 1
-        if A.left:   A.size += A.left.size
-        if A.right:  A.size += A.right.size
+        if A.left:
+            A.size += A.left.size
+        if A.right:
+            A.size += A.right.size
 
     def subtree_node_at(A, i):  # O(h)
         assert 0 <= i < A.size
@@ -67,7 +69,8 @@ class Binary_Tree_Seq(Binary_Tree):
         assert self.root
         node = self.root.subtree_node_at(i)
         ext = node.subtree_extract()
-        if ext.parent is None:  self.root = None
+        if ext.parent is None:
+            self.root = None
         self.size -= 1
         return ext.item
 
